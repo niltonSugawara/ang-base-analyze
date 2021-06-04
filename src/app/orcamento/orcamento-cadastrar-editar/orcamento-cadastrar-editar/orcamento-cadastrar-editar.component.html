@@ -1,0 +1,46 @@
+<mat-toolbar>Cadastrar Orçamento</mat-toolbar>
+
+<div class="componente-container">
+  <form
+    class="form-padrao"
+    *ngIf="formGroup"
+    [formGroup]="formGroup"
+    (ngSubmit)="formGroup.valid && salvar()"
+    novalidate
+  >
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Data"
+        formControlName="dataCadastro"
+        required
+        autocomplete="off"
+      />
+      <mat-error>Campo é obrigatório</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Valor"
+        formControlName="valor"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Status"
+        formControlName="status"
+        required
+      />
+      <mat-error>Campo é obrigatório</mat-error>
+    </mat-form-field>
+    <div class="linha-botoes">
+      <button mat-raised-button color="primary" [disabled]="!formGroup.valid">
+        Salvar
+      </button>
+      <button type="button" mat-raised-button routerLink="/orcamentos">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

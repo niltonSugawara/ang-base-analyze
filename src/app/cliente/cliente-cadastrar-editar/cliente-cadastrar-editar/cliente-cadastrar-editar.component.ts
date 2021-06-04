@@ -43,7 +43,7 @@ export class ClienteCadastrarEditarComponent implements OnInit {
     if (this.cliente && this.cliente.id) {
       this.clienteService.atualizar(this.formGroup.value).subscribe(
         (clienteAtualizado) => {
-          this.router.navigateByUrl('/cliente');
+          this.router.navigateByUrl('/clientes');
         },
         (error) => {
           alert('Erro ao atualizar' + JSON.stringify(error));
@@ -52,7 +52,7 @@ export class ClienteCadastrarEditarComponent implements OnInit {
     } else {
       this.clienteService.cadastrar(this.formGroup.value).subscribe(
         (clienteCadastrado) => {
-          this.router.navigateByUrl('/cliente');
+          this.router.navigateByUrl('/clientes');
         },
         (error) => {
           alert('Erro ao cadastrar' + JSON.stringify(error));

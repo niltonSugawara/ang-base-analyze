@@ -1,0 +1,65 @@
+<mat-toolbar>Lista de Amostras</mat-toolbar>
+
+<ng-template #carregando>
+  <mat-spinner></mat-spinner>
+</ng-template>
+
+<div class="componente-container">
+  <div *ngIf="amostras$ | async as amostras; else carregando">
+    <table mat-table [dataSource]="amostras">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let amostras">{{ amostras.id }}</td>
+      </ng-container>
+      <ng-container matColumnDef="dataCadastro">
+        <th mat-header-cell *matHeaderCellDef>Data de Cadastro</th>
+        <td mat-cell *matCellDef="let amostras">{{ amostras.dataCadastro }}</td>
+      </ng-container>
+      <ng-container matColumnDef="razaoSocial">
+        <th mat-header-cell *matHeaderCellDef>Razão Social</th>
+        <td mat-cell *matCellDef="let amostras">{{ amostras.razaoSocial }}</td>
+      </ng-container>
+      <ng-container matColumnDef="nomeFantasia">
+        <th mat-header-cell *matHeaderCellDef>Nome Fantasia</th>
+        <td mat-cell *matCellDef="let amostras">{{ amostras.nomeFantasia }}</td>
+      </ng-container>
+      <ng-container matColumnDef="cnpj">
+        <th mat-header-cell *matHeaderCellDef>CNPJ</th>
+        <td mat-cell *matCellDef="let amostras">{{ amostras.cnpj }}</td>
+      </ng-container>
+      <ng-container matColumnDef="telefone">
+        <th mat-header-cell *matHeaderCellDef>Telefone</th>
+        <td mat-cell *matCellDef="let amostras">{{ amostras.telefone }}</td>
+      </ng-container>
+      <ng-container matColumnDef="acoes" stickyEnd>
+        <th scope="col" mat-header-cell *matHeaderCellDef>Ações</th>
+        <td mat-cell *matCellDef="let amostra">
+          <button
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            (click)="$event.stopPropagation()"
+          >
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="editar(amostra)">
+              <mat-icon>edit</mat-icon>
+              <span>Editar</span>
+            </button>
+            <button mat-menu-item (click)="excluir(amostra)">
+              <mat-icon>delete</mat-icon>
+              <span>Excluir</span>
+            </button>
+          </mat-menu>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="colunasTabela"></tr>
+      <tr mat-row *matRowDef="let row; columns: colunasTabela"></tr>
+    </table>
+  </div>
+  <div class="linha-botoes">
+    <button mat-raised-button color="primary" routerLink="/amostras/cadastrar">
+      Cadastrar
+    </button>
+  </div>
+</div>

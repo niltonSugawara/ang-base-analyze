@@ -1,15 +1,13 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
 
-import { AmostraComponent } from './amostra/amostra.component';
-import { HomeComponent } from './home/home.component';
-import { NormaTecnicaComponent } from './norma-tecnica/norma-tecnica.component';
-import { OrcamentoComponent } from './orcamento/orcamento.component';
-import { OrdemServicoComponent } from './ordem-servico/ordem-servico.component';
-import { TecnicoQuimicoComponent } from './tecnico-quimico/tecnico-quimico.component';
+import { AuthGuard } from "./autenticacao/auth.guard";
+import { HomeComponent } from "./home/home.component";
+import { NotfoundpageComponent } from "./pages/notfoundpage/notfoundpage.component";
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   {
     path: 'login',
     loadChildren: () =>
@@ -18,36 +16,74 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'cliente',
+    path: 'clientes',
     loadChildren: () =>
       import('./cliente/cliente-listar/cliente-listar.module').then(
         (modulo) => modulo.ClienteListarModule
       ),
   },
   {
-    path: 'cliente/cadastrar',
+    path: 'clientes/cadastrar',
     loadChildren: () =>
       import(
         './cliente/cliente-cadastrar-editar/cliente-cadastrar-editar.module'
       ).then((modulo) => modulo.ClienteCadastrarEditarModule),
   },
   {
-    path: 'cliente/editar/:id',
+    path: 'clientes/editar/:id',
     loadChildren: () =>
       import(
         './cliente/cliente-cadastrar-editar/cliente-cadastrar-editar.module'
       ).then((modulo) => modulo.ClienteCadastrarEditarModule),
   },
-  { path: 'orcamento', component: OrcamentoComponent },
-  { path: 'ordem-servico', component: OrdemServicoComponent },
-  { path: 'amostra', component: AmostraComponent },
-  { path: 'norma-tecnica', component: NormaTecnicaComponent },
+  {
+    path: 'orcamentos',
+    loadChildren: () =>
+      import('./orcamento/orcamento-listar/orcamento-listar.module').then(
+        (modulo) => modulo.OrcamentoListarModule
+      ),
+  },
+  {
+    path: 'orcamentos/cadastrar',
+    loadChildren: () =>
+      import(
+        './orcamento/orcamento-cadastrar-editar/orcamento-cadastrar-editar.module'
+      ).then((modulo) => modulo.OrcamentoCadastrarEditarModule),
+  },
+  {
+    path: 'orcamentos/editar/:id',
+    loadChildren: () =>
+      import(
+        './orcamento/orcamento-cadastrar-editar/orcamento-cadastrar-editar.module'
+      ).then((modulo) => modulo.OrcamentoCadastrarEditarModule),
+  },
+  {
+    path: 'normas-tecnicas',
+    loadChildren: () =>
+      import('./norma-tecnica/listar/listar.module').then(
+        (modulo) => modulo.NormaTecnicaListarModule
+      ),
+  },
+  {
+    path: 'normas-tecnicas/cadastrar',
+    loadChildren: () =>
+      import('./norma-tecnica/cadastrar-editar/cadastrar-editar.module').then(
+        (modulo) => modulo.NormaTecnicaCadastrarEditarModule
+      ),
+  },
+  {
+    path: 'normas-tecnicas/editar/:id',
+    loadChildren: () =>
+      import('./norma-tecnica/cadastrar-editar/cadastrar-editar.module').then(
+        (modulo) => modulo.NormaTecnicaCadastrarEditarModule
+      ),
+  },
   {
     path: 'tecnicos-quimicos',
     loadChildren: () =>
-      import('./tecnico-quimico/tecnico-quimico-listar/tecnico-quimico-listar.module').then(
-        (modulo) => modulo.TecnicoQuimicoListarModule
-      ),
+      import(
+        './tecnico-quimico/tecnico-quimico-listar/tecnico-quimico-listar.module'
+      ).then((modulo) => modulo.TecnicoQuimicoListarModule),
   },
   {
     path: 'tecnicos-quimicos/cadastrar',
@@ -62,7 +98,51 @@ const routes: Routes = [
       import(
         './tecnico-quimico/tecnico-quimico-cadastrar-editar/tecnico-quimico-cadastrar-editar.module'
       ).then((modulo) => modulo.TecnicoQuimicoCadastrarEditarModule),
-  }
+  },
+
+  {
+    path: 'amostras',
+    loadChildren: () =>
+      import('./amostra/listar/listar.module').then(
+        (modulo) => modulo.AmostraListarModule
+      ),
+  },
+  {
+    path: 'amostras/cadastrar',
+    loadChildren: () =>
+      import('./amostra/cadastrar-editar/cadastrar-editar.module').then(
+        (modulo) => modulo.AmostraCadastrarEditarModule
+      ),
+  },
+  {
+    path: 'amostras/editar/:id',
+    loadChildren: () =>
+      import('./amostra/cadastrar-editar/cadastrar-editar.module').then(
+        (modulo) => modulo.AmostraCadastrarEditarModule
+      ),
+  },
+  {
+    path: 'ordens-servicos',
+    loadChildren: () =>
+      import('./ordem-servico/listar/listar.module').then(
+        (modulo) => modulo.OrdemServicoListarModule
+      ),
+  },
+  {
+    path: 'ordens-servicos/cadastrar',
+    loadChildren: () =>
+      import('./ordem-servico/cadastrar-editar/cadastrar-editar.module').then(
+        (modulo) => modulo.OrdemServicoCadastrarEditarModule
+      ),
+  },
+  {
+    path: 'ordens-servicos/editar/:id',
+    loadChildren: () =>
+      import('./ordem-servico/cadastrar-editar/cadastrar-editar.module').then(
+        (modulo) => modulo.OrdemServicoCadastrarEditarModule
+      ),
+  },
+  { path: '**', component: NotfoundpageComponent },
 ];
 
 @NgModule({

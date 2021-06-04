@@ -5,17 +5,18 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="">Home</a>
-      <a mat-list-item routerLink="cliente">Cliente</a>
-      <a mat-list-item routerLink="orcamento">Orçamento</a>
-      <a mat-list-item routerLink="ordem-servico">Ordem de Serviço</a>
-      <a mat-list-item routerLink="amostra">Amostra</a>
-      <a mat-list-item routerLink="norma-tecnica">Norma Técnica</a>
+      <a mat-list-item routerLink="home">Home</a>
+      <a mat-list-item routerLink="clientes">Cliente</a>
+      <a mat-list-item routerLink="orcamentos">Orçamento</a>
+      <a mat-list-item routerLink="ordens-servicos">Ordem de Serviço</a>
+      <a mat-list-item routerLink="amostras">Amostra</a>
+      <a mat-list-item routerLink="normas-tecnicas">Norma Técnica</a>
       <a mat-list-item routerLink="tecnicos-quimicos">Técnico Químico</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar  color="primary">
+
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -24,8 +25,8 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Analyze</span>
-      <button *ngIf="estaLogado$ | async" (click)="sair()">Sair</button>
+      <span class="separa">Analyze</span>
+      <button class="mat-stroked-button" color="primary" *ngIf="estaLogado$ | async" (click)="sair()">Sair</button>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

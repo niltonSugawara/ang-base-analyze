@@ -34,7 +34,7 @@ export class ClienteListarComponent implements OnInit {
   }
 
   editar(cliente: Cliente) {
-    this.router.navigateByUrl(`/cliente/editar/${cliente.id}`);
+    this.router.navigateByUrl(`/clientes/editar/${cliente.id}`);
   }
 
   excluir(cliente: Cliente) {

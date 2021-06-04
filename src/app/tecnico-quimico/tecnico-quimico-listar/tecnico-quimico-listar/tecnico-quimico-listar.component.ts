@@ -29,7 +29,7 @@ export class TecnicoQuimicoListarComponent implements OnInit {
   }
 
   editar(tecnicoQuimico: TecnicoQuimico) {
-    this.router.navigateByUrl(`/tecnico-quimico/editar/${tecnicoQuimico.id}`);
+    this.router.navigateByUrl(`/tecnicos-quimicos/editar/${tecnicoQuimico.id}`);
   }
 
   excluir(tecnicoQuimico: TecnicoQuimico) {

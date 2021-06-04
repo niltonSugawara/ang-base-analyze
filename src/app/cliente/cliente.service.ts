@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { environment } from "src/environments/environment";
 
 import { Cliente } from "./cliente.model";
 
@@ -9,28 +10,27 @@ import { Cliente } from "./cliente.model";
 })
 export class ClienteService {
 
-  private baseURL = 'http://localhost:3000';
   private endpoint = 'clientes';
 
   constructor(private httpClient: HttpClient) { }
 
   listar():Observable<Cliente[]>{
-    return this.httpClient.get<Cliente[]>(`${this.baseURL}/${this.endpoint}`);
+    return this.httpClient.get<Cliente[]>(`${environment.apiURL}/${this.endpoint}`);
   }
 
   cadastrar(cliente: Cliente ): Observable<Cliente> {
-    return this.httpClient.post<Cliente>(`${this.baseURL}/${this.endpoint}`, cliente);
+    return this.httpClient.post<Cliente>(`${environment.apiURL}/${this.endpoint}`, cliente);
   }
 
   pesquisarPorID(id: number): Observable<Cliente> {
-    return this.httpClient.get<Cliente>(`${this.baseURL}/${this.endpoint}/${id}`) ;
+    return this.httpClient.get<Cliente>(`${environment.apiURL}/${this.endpoint}/${id}`) ;
   }
 
   atualizar(cliente: Cliente): Observable<Cliente> {
-    return this.httpClient.put<Cliente>(`${this.baseURL}/${this.endpoint}/${cliente.id}`,cliente);
+    return this.httpClient.put<Cliente>(`${environment.apiURL}/${this.endpoint}/${cliente.id}`,cliente);
   }
 
   deletar(cliente: Cliente): Observable<{}> {
-    return this.httpClient.delete(`${this.baseURL}/${this.endpoint}/${cliente.id}`);
+    return this.httpClient.delete(`${environment.apiURL}/${this.endpoint}/${cliente.id}`);
   }
 }

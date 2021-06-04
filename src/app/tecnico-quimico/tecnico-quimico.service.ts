@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { environment } from "src/environments/environment";
 
 import { TecnicoQuimico } from "./tecnico-quimico.model";
 
@@ -9,28 +10,27 @@ import { TecnicoQuimico } from "./tecnico-quimico.model";
 })
 export class TecnicoQuimicoService {
 
-  private baseURL = 'http://localhost:3000';
   private endpoint = 'tecnicos-quimicos';
 
   constructor(private httpClient: HttpClient) { }
 
   listar():Observable<TecnicoQuimico[]>{
-    return this.httpClient.get<TecnicoQuimico[]>(`${this.baseURL}/${this.endpoint}`);
+    return this.httpClient.get<TecnicoQuimico[]>(`${environment.apiURL}/${this.endpoint}`);
   }
 
   cadastrar(tecnico: TecnicoQuimico ): Observable<TecnicoQuimico> {
-    return this.httpClient.post<TecnicoQuimico>(`${this.baseURL}/${this.endpoint}`, tecnico);
+    return this.httpClient.post<TecnicoQuimico>(`${environment.apiURL}/${this.endpoint}`, tecnico);
   }
 
   pesquisarPorID(id: number): Observable<TecnicoQuimico> {
-    return this.httpClient.get<TecnicoQuimico>(`${this.baseURL}/${this.endpoint}/${id}`) ;
+    return this.httpClient.get<TecnicoQuimico>(`${environment.apiURL}/${this.endpoint}/${id}`) ;
   }
 
   atualizar(tecnico: TecnicoQuimico): Observable<TecnicoQuimico> {
-    return this.httpClient.put<TecnicoQuimico>(`${this.baseURL}/${this.endpoint}/${tecnico.id}`,tecnico);
+    return this.httpClient.put<TecnicoQuimico>(`${environment.apiURL}/${this.endpoint}/${tecnico.id}`,tecnico);
   }
 
   deletar(tecnico: TecnicoQuimico): Observable<{}> {
-    return this.httpClient.delete(`${this.baseURL}/${this.endpoint}/${tecnico.id}`);
+    return this.httpClient.delete(`${environment.apiURL}/${this.endpoint}/${tecnico.id}`);
   }
 }

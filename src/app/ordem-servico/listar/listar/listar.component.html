@@ -1,0 +1,49 @@
+<mat-toolbar>Lista de Ordens de Serviços</mat-toolbar>
+
+<ng-template #carregando>
+  <mat-spinner></mat-spinner>
+</ng-template>
+
+<div class="componente-container">
+  <div *ngIf="ordens$ | async as ordens; else carregando">
+    <table mat-table [dataSource]="ordens">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let ordem">{{ ordem.id }}</td>
+      </ng-container>
+      <ng-container matColumnDef="data">
+        <th mat-header-cell *matHeaderCellDef>Data de Cadastro</th>
+        <td mat-cell *matCellDef="let ordem">{{ ordem.data }}</td>
+      </ng-container>
+      <ng-container matColumnDef="acoes" stickyEnd>
+        <th scope="col" mat-header-cell *matHeaderCellDef>Ações</th>
+        <td mat-cell *matCellDef="let ordem">
+          <button
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            (click)="$event.stopPropagation()"
+          >
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="editar(ordem)">
+              <mat-icon>edit</mat-icon>
+              <span>Editar</span>
+            </button>
+            <button mat-menu-item (click)="excluir(ordem)">
+              <mat-icon>delete</mat-icon>
+              <span>Excluir</span>
+            </button>
+          </mat-menu>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="colunasTabela"></tr>
+      <tr mat-row *matRowDef="let row; columns: colunasTabela"></tr>
+    </table>
+  </div>
+  <div class="linha-botoes">
+    <button mat-raised-button color="primary" routerLink="/ordens-servicos/cadastrar">
+      Cadastrar
+    </button>
+  </div>
+</div>
