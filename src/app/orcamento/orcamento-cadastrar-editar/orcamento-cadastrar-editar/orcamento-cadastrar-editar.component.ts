@@ -1,9 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Cliente } from 'src/app/cliente/cliente.model';
+import { environment } from 'src/environments/environment';
 
-import { Orcamento } from "../../orcamento.model";
-import { OrcamentoService } from "../../orcamento.service";
+import { Orcamento } from '../../orcamento.model';
+import { OrcamentoService } from '../../orcamento.service';
 
 @Component({
   selector: 'app-orcamento-cadastrar-editar',
@@ -13,6 +17,8 @@ import { OrcamentoService } from "../../orcamento.service";
 export class OrcamentoCadastrarEditarComponent implements OnInit {
   formGroup: FormGroup;
   orcamento: Orcamento;
+  cliente: Cliente;
+  httpClient: HttpClient;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,11 +33,11 @@ export class OrcamentoCadastrarEditarComponent implements OnInit {
 
     this.formGroup = this.formBuilder.group({
       id: [this.orcamento?.id ?? null],
-      dataCadastro: [
-        this.orcamento?.dataCadastro ?? new Date().toLocaleDateString(),
-      ],
+      data: [this.orcamento?.data ?? null],
       valor: [this.orcamento?.valor ?? null],
-      status: [this.orcamento?.status ?? null],
+      descricao: [this.orcamento?.descricao ?? null],
+      nome: [this.orcamento?.nome ?? null],
+      id_cliente: [this.cliente?.id ?? null],
     });
   }
 
@@ -55,5 +61,9 @@ export class OrcamentoCadastrarEditarComponent implements OnInit {
         }
       );
     }
+  }
+
+  buscarClienteID(id:number): Observable<Cliente> {
+    return this.httpClient.get<Cliente>(`${environment.apiURL}/clientes/${id}`)
   }
 }

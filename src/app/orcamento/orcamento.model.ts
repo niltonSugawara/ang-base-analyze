@@ -1,6 +1,8 @@
 export interface Orcamento {
   id: string,
-  dataCadastro: Date,
+  data: Date,
   valor: number,
-  status: string,
+  descricao: string,
+  nome: string,
+  id_cliente: number
 }

@@ -11,8 +11,8 @@
     <mat-form-field>
       <input
         matInput
-        placeholder="Data"
-        formControlName="dataCadastro"
+        placeholder="Nome"
+        formControlName="nome"
         required
         autocomplete="off"
       />
@@ -21,16 +21,31 @@
     <mat-form-field>
       <input
         matInput
-        placeholder="Valor"
-        formControlName="valor"
+        placeholder="Data"
+        formControlName="data"
+        required
+        autocomplete="off"
       />
+      <mat-error>Campo é obrigatório</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Valor" formControlName="valor" required />
     </mat-form-field>
     <mat-form-field>
       <input
         matInput
-        placeholder="Status"
-        formControlName="status"
+        placeholder="Descrição"
+        formControlName="descricao"
+      />
+      <mat-error>Campo é obrigatório</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="ID Cliente"
+        formControlName="id_cliente"
         required
+        autocomplete="off"
       />
       <mat-error>Campo é obrigatório</mat-error>
     </mat-form-field>

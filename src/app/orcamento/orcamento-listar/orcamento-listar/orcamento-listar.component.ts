@@ -1,10 +1,8 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { Observable } from "rxjs";
-import { Orcamento } from "src/app/orcamento/orcamento.model";
-import { OrcamentoService } from "src/app/orcamento/orcamento.service";
-
-
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Orcamento } from 'src/app/orcamento/orcamento.model';
+import { OrcamentoService } from 'src/app/orcamento/orcamento.service';
 
 @Component({
   selector: 'app-orcamento-listar',
@@ -14,17 +12,12 @@ import { OrcamentoService } from "src/app/orcamento/orcamento.service";
 export class OrcamentoListarComponent implements OnInit {
   orcamentos$: Observable<Orcamento[]>;
 
-  colunasTabela = [
-    'id',
-    'dataCadastro',
-    'razaoSocial',
-    'nomeFantasia',
-    'cnpj',
-    'telefone',
-    'acoes',
-  ];
+  colunasTabela = ['id', 'data','nome','cliente','descricao','valor', 'acoes'];
 
-  constructor(private orcamentoService: OrcamentoService, private router: Router) {}
+  constructor(
+    private orcamentoService: OrcamentoService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.listarOrcamentos();
