@@ -29,10 +29,10 @@ export class ClienteCadastrarEditarComponent implements OnInit {
       id: [this.cliente?.id ?? null],
       razaoSocial: [this.cliente?.razaoSocial ?? '', Validators.required],
       cnpj: [this.cliente?.cnpj ?? ''],
-      email: [this.cliente?.emailCliente ?? '', Validators.email],
-      nomeFantasia: [this.cliente?.nomeFantasia ?? ''],
+      email: [this.cliente?.email ?? '', Validators.email],
+      nome: [this.cliente?.nome ?? ''],
       telefone: [this.cliente?.telefone ?? ''],
-      endereco: [this.cliente?.enderecoCliente ?? ''],
+      endereco: [this.cliente?.endereco ?? ''],
       dataCadastro: [
         this.cliente?.dataCadastro ?? new Date().toLocaleDateString(),
       ],

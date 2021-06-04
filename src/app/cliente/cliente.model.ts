@@ -3,9 +3,9 @@ export interface Cliente {
   id: number,
   dataCadastro: Date,
   razaoSocial: string,
-  enderecoCliente: string,
+  endereco: string,
   cnpj: string,
   telefone: string,
-  emailCliente: string,
-  nomeFantasia: string
+  email: string,
+  nome: string
 }
