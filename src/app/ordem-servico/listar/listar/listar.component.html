@@ -15,6 +15,14 @@
         <th mat-header-cell *matHeaderCellDef>Data de Cadastro</th>
         <td mat-cell *matCellDef="let ordem">{{ ordem.data }}</td>
       </ng-container>
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef>Nome Executor</th>
+        <td mat-cell *matCellDef="let ordem">{{ ordem.nome }}</td>
+      </ng-container>
+      <ng-container matColumnDef="id_tecnico">
+        <th mat-header-cell *matHeaderCellDef>ID Tecnico</th>
+        <td mat-cell *matCellDef="let ordem">{{ ordem.id_tecnico}}</td>
+      </ng-container>
       <ng-container matColumnDef="acoes" stickyEnd>
         <th scope="col" mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let ordem">

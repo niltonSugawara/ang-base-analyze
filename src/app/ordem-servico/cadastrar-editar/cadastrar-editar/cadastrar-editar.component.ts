@@ -27,7 +27,9 @@ export class OrdemServicoCadastrarEditarComponent implements OnInit {
 
     this.formGroup = this.formBuilder.group({
       id: [this.ordemServico?.id ?? null],
-      valorOrcamento: [this.ordemServico?.valorOrcamento ?? '', Validators.required],
+      nome: [this.ordemServico?.nome ?? null],
+      data: [this.ordemServico?.data ?? null],
+      id_tecnico: [this.ordemServico?.id_tecnico ?? null]
     });
   }
 

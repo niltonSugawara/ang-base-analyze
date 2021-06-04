@@ -13,7 +13,7 @@ import { OrdemServicoService } from "../../service";
 export class OrdemServicoListarComponent implements OnInit {
   ordens$: Observable<OrdemServico[]>;
 
-  colunasTabela = ['id', 'data', 'acoes'];
+  colunasTabela = ['id','nome', 'data','id_tecnico', 'acoes'];
 
   constructor(
     private ordemServicoService: OrdemServicoService,
