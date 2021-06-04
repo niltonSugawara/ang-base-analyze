@@ -11,8 +11,28 @@
     <mat-form-field>
       <input
         matInput
-        placeholder="Valor Orçamento"
-        formControlName="valorOrcamento"
+        placeholder="Nome"
+        formControlName="nome"
+        required
+        autocomplete="off"
+      />
+      <mat-error>Campo é obrigatório</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Data Cadastro"
+        formControlName="data"
+        required
+        autocomplete="off"
+      />
+      <mat-error>Campo é obrigatório</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="ID Técnico"
+        formControlName="id_tecnico"
         required
         autocomplete="off"
       />
