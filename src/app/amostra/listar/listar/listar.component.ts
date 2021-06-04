@@ -15,6 +15,11 @@ export class AmostraListarComponent implements OnInit {
 
   colunasTabela = [
     'id',
+    'nome',
+    'descricao',
+    'cliente',
+    'tipoAmostra',
+    'status',
     "acoes"
   ];
 

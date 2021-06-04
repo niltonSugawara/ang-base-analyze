@@ -122,6 +122,27 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'tipoAmostras',
+    loadChildren: () =>
+      import('./tipo-amostra/listar/listar.module').then(
+        (modulo) => modulo.TipoAmostraListarModule
+      ),
+  },
+  {
+    path: 'tipoAmostras/cadastrar',
+    loadChildren: () =>
+      import('./tipo-amostra/cadastrar-editar/cadastrar-editar.module').then(
+        (modulo) => modulo.TipoAmostraCadastrarEditarModule
+      ),
+  },
+  {
+    path: 'tipoAmostras/editar/:id',
+    loadChildren: () =>
+      import('./tipo-amostra/cadastrar-editar/cadastrar-editar.module').then(
+        (modulo) => modulo.TipoAmostraCadastrarEditarModule
+      ),
+  },
+  {
     path: 'ordens-servicos',
     loadChildren: () =>
       import('./ordem-servico/listar/listar.module').then(
