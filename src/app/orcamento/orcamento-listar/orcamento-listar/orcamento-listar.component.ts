@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { formatarDataDDMMYYYY } from 'src/app/_util/util';
 import { Orcamento } from 'src/app/orcamento/orcamento.model';
 import { OrcamentoService } from 'src/app/orcamento/orcamento.service';
 
@@ -12,7 +13,15 @@ import { OrcamentoService } from 'src/app/orcamento/orcamento.service';
 export class OrcamentoListarComponent implements OnInit {
   orcamentos$: Observable<Orcamento[]>;
 
-  colunasTabela = ['id', 'data','nome','cliente','descricao','valor', 'acoes'];
+  colunasTabela = [
+    'id',
+    'data',
+    'nome',
+    'cliente',
+    'descricao',
+    'valor',
+    'acoes',
+  ];
 
   constructor(
     private orcamentoService: OrcamentoService,
@@ -38,5 +47,9 @@ export class OrcamentoListarComponent implements OnInit {
         alert('Deletado com sucesso');
       });
     }
+  }
+
+  formatarData(data: string): string {
+    return formatarDataDDMMYYYY(data);
   }
 }
