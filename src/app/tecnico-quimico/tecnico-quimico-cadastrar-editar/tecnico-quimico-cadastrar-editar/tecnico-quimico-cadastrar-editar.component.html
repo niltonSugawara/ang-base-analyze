@@ -1,4 +1,6 @@
-<mat-toolbar>{{tecnico?.id ? 'Editar': 'Cadastrar'}} Técnico Químico</mat-toolbar>
+<mat-toolbar
+  >{{ tecnico?.id ? "Editar" : "Cadastrar" }} Técnico Químico</mat-toolbar
+>
 
 <div class="componente-container">
   <form
@@ -19,11 +21,8 @@
       <mat-error>Campo é obrigatório</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input
-        matInput
-        placeholder="Número CRQ"
-        formControlName="crq"
-      />
+      <input required matInput placeholder="Número CRQ" formControlName="crq" />
+      <mat-error>Campo é obrigatório</mat-error>
     </mat-form-field>
     <div class="linha-botoes">
       <button mat-raised-button color="primary" [disabled]="!formGroup.valid">

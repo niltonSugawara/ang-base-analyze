@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
 import { MatToolbarModule } from "@angular/material/toolbar";
 
 import { AmostraResolverService } from "./amostra.resolver";
@@ -18,6 +19,7 @@ import { AmostraCadastrarEditarComponent } from "./cadastrar-editar/cadastrar-ed
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     MatToolbarModule,
     MatButtonModule,
   ],

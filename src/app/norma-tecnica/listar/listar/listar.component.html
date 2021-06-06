@@ -12,8 +12,18 @@
         <td mat-cell *matCellDef="let norma">{{ norma.id }}</td>
       </ng-container>
       <ng-container matColumnDef="nome">
-        <th mat-header-cell *matHeaderCellDef>Data de Cadastro</th>
-        <td mat-cell *matCellDef="let norma">{{ norma.dataCadastro }}</td>
+        <th mat-header-cell *matHeaderCellDef>Norma Cadastrada</th>
+        <td mat-cell *matCellDef="let norma">{{ norma.nome }}</td>
+      </ng-container>
+      <ng-container matColumnDef="descricao">
+        <th mat-header-cell *matHeaderCellDef>Descrição da Norma</th>
+        <td mat-cell *matCellDef="let norma">{{ norma.descricao }}</td>
+      </ng-container>
+      <ng-container matColumnDef="arquivo">
+        <th mat-header-cell *matHeaderCellDef>Arquivo</th>
+        <td mat-cell *matCellDef="let norma">
+          <button mat-raised-button color="basic">Ver arquivo</button>
+        </td>
       </ng-container>
       <ng-container matColumnDef="acoes" stickyEnd>
         <th scope="col" mat-header-cell *matHeaderCellDef>Ações</th>

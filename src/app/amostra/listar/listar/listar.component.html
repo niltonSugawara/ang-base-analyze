@@ -21,15 +21,15 @@
       </ng-container>
       <ng-container matColumnDef="cliente">
         <th mat-header-cell *matHeaderCellDef>Cliente</th>
-        <td mat-cell *matCellDef="let amostras">{{ amostras.cliente }}</td>
+        <td mat-cell *matCellDef="let amostras">{{ amostras.cliente?.nome }}</td>
       </ng-container>
       <ng-container matColumnDef="tipoAmostra">
         <th mat-header-cell *matHeaderCellDef>Tipo de Amostra</th>
-        <td mat-cell *matCellDef="let amostras">{{ amostras.tipoAmostra }}</td>
+        <td mat-cell *matCellDef="let amostras">{{ amostras.tipoAmostra?.tipoAmostra }}</td>
       </ng-container>
       <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef>Status</th>
-        <td mat-cell *matCellDef="let amostras">{{ amostras.status }}</td>
+        <td mat-cell *matCellDef="let amostras">{{ amostras.status?.nome }}</td>
       </ng-container>
       <ng-container matColumnDef="acoes" stickyEnd>
         <th scope="col" mat-header-cell *matHeaderCellDef>Ações</th>

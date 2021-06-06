@@ -1,4 +1,5 @@
 export interface NormaTecnica {
   id: number,
-  nome: string
+  nome: string,
+  descricao: string
 }

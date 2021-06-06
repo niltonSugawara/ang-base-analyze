@@ -28,6 +28,7 @@ export class NormaTecnicaCadastrarEditarComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       id: [this.normaTecnica?.id ?? null],
       nome: [this.normaTecnica?.nome ?? '', Validators.required],
+      descricao: [this.normaTecnica?.descricao ?? null]
     });
   }
 

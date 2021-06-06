@@ -13,7 +13,7 @@
     <mat-form-field>
       <input
         matInput
-        placeholder="Nome"
+        placeholder="Criador da Ordem de Serviço"
         formControlName="nome"
         required
         autocomplete="off"
@@ -23,6 +23,7 @@
     <mat-form-field>
       <mat-label>Escolha uma data</mat-label>
       <input
+        required
         matInput
         disabled
         formControlName="data"
@@ -33,13 +34,33 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Tecnicos Quimicos</mat-label>
-      <mat-select formControlName="tecnico" [compareWith]="comparaTecnicos">
+      <mat-select
+        required
+        formControlName="tecnico"
+        [compareWith]="comparaTecnicos"
+      >
         <mat-option
           *ngFor="let tecnico of tecnicos$ | async"
           [value]="tecnico"
           >{{ tecnico.nome }}</mat-option
         >
       </mat-select>
+      <mat-error>Selecione um Técnico</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Tipo de Serviço</mat-label>
+      <mat-select
+        required
+        formControlName="servico"
+        [compareWith]="comparaServicos"
+      >
+        <mat-option
+          *ngFor="let servico of servicos$ | async"
+          [value]="servico"
+          >{{ servico.nomeTipoServico }}</mat-option
+        >
+      </mat-select>
+      <mat-error>Selecione o tipo de serviço atual</mat-error>
     </mat-form-field>
     <div class="linha-botoes">
       <button mat-raised-button color="primary" [disabled]="!formGroup.valid">

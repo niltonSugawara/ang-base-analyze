@@ -18,6 +18,20 @@
       />
       <mat-error>Campo é obrigatório</mat-error>
     </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Descricao"
+        formControlName="descricao"
+        required
+        autocomplete="off"
+      />
+      <mat-error>Campo é obrigatório</mat-error>
+    </mat-form-field>
+<div>
+  <input type="file" class="file-upload" onchange="console.log(event.target.files)"/>
+
+</div>
     <div class="linha-botoes">
       <button mat-raised-button color="primary" [disabled]="!formGroup.valid">
         Salvar

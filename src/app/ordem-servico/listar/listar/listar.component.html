@@ -16,12 +16,16 @@
         <td mat-cell *matCellDef="let ordem">{{ formatarData(ordem.data) }}</td>
       </ng-container>
       <ng-container matColumnDef="nome">
-        <th mat-header-cell *matHeaderCellDef>Nome Executor</th>
+        <th mat-header-cell *matHeaderCellDef>Criador da Ordem de Serviço</th>
         <td mat-cell *matCellDef="let ordem">{{ ordem.nome }}</td>
       </ng-container>
       <ng-container matColumnDef="tecnico">
         <th mat-header-cell *matHeaderCellDef>Tecnico</th>
         <td mat-cell *matCellDef="let ordem">{{ ordem.tecnico?.nome}}</td>
+      </ng-container>
+      <ng-container matColumnDef="situacao">
+        <th mat-header-cell *matHeaderCellDef>Situação</th>
+        <td mat-cell *matCellDef="let ordem">{{ ordem.servico?.nomeTipoServico}}</td>
       </ng-container>
       <ng-container matColumnDef="acoes" stickyEnd>
         <th scope="col" mat-header-cell *matHeaderCellDef>Ações</th>

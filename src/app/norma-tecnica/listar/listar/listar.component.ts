@@ -16,7 +16,9 @@ export class NormaTecnicaListarComponent implements OnInit {
   colunasTabela = [
     'id',
     'nome',
-    "acoes"
+    'descricao',
+    'arquivo',
+    'acoes'
   ];
 
   constructor(private normaTecnicaService: NormaTecnicaService, private router: Router) {}

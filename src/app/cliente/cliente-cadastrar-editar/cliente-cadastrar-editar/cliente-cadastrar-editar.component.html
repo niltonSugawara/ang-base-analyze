@@ -31,6 +31,7 @@
         placeholder="CNPJ"
         formControlName="cnpj"
         required
+        autocomplete="off"
       />
       <mat-error>Campo é obrigatório</mat-error>
     </mat-form-field>
@@ -53,7 +54,10 @@
         matInput
         placeholder="E-mail"
         formControlName="email"
+        required
+        autocomplete="off"
       />
+      <mat-error>Campo é obrigatório</mat-error>
     </mat-form-field>
     <div class="linha-botoes">
       <button mat-raised-button color="primary" [disabled]="!formGroup.valid">

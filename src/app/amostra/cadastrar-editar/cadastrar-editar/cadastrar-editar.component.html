@@ -1,4 +1,4 @@
-<mat-toolbar>Cadastrar Amostra</mat-toolbar>
+<mat-toolbar>{{amostra?.id ? 'Editar':'Cadastrar'}} Amostra</mat-toolbar>
 
 <div class="componente-container">
   <form
@@ -8,6 +8,16 @@
     (ngSubmit)="formGroup.valid && salvar()"
     novalidate
   >
+   <mat-form-field>
+      <input
+        matInput
+        placeholder="Nome da Amostra"
+        formControlName="nome"
+        required
+        autocomplete="off"
+      />
+      <mat-error>Campo é obrigatório</mat-error>
+    </mat-form-field>
     <mat-form-field>
       <input
         matInput
@@ -16,7 +26,39 @@
         required
         autocomplete="off"
       />
-      <mat-error>Campo é obrigatório</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Clientes</mat-label>
+      <mat-select required formControlName="cliente" [compareWith]="comparaClientes">
+        <mat-option
+          *ngFor="let cliente of clientes$ | async"
+          [value]="cliente"
+          >{{ cliente.nome }}</mat-option
+        >
+      </mat-select>
+      <mat-error>Selecione o Cliente relacionado a Amostra</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Tipo de Amostra</mat-label>
+      <mat-select required formControlName="tipoAmostra" [compareWith]="comparaTipoAmostras">
+        <mat-option
+          *ngFor="let tipoAmostra of tipoAmostras$ | async"
+          [value]="tipoAmostra"
+          >{{ tipoAmostra.tipoAmostra }}</mat-option
+        >
+      </mat-select>
+      <mat-error>Selecione o tipo da Amostra</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select required formControlName="status" [compareWith]="comparaStatus">
+        <mat-option
+          *ngFor="let status of status$ | async"
+          [value]="status"
+          >{{ status.nome }}</mat-option
+        >
+      </mat-select>
+      <mat-error>Selecione o status atual</mat-error>
     </mat-form-field>
     <div class="linha-botoes">
       <button mat-raised-button color="primary" [disabled]="!formGroup.valid">
