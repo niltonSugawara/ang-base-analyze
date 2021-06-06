@@ -13,6 +13,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
 import { MainNavComponent } from "./main-nav/main-nav.component";
+import { MatDatePickerSharedModule } from "./mat-datepicker";
 import { NotfoundpageComponent } from "./pages/notfoundpage/notfoundpage.component";
 
 @NgModule({
@@ -32,7 +33,8 @@ import { NotfoundpageComponent } from "./pages/notfoundpage/notfoundpage.compone
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDatePickerSharedModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

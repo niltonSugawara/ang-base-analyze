@@ -1,13 +1,15 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Cliente } from 'src/app/cliente/cliente.model';
-import { environment } from 'src/environments/environment';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { DateAdapter, MAT_DATE_FORMATS } from "@angular/material/core";
+import { MatDatepicker } from "@angular/material/datepicker";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Observable } from "rxjs";
+import { Cliente } from "src/app/cliente/cliente.model";
+import { ClienteService } from "src/app/cliente/cliente.service";
+import { MatDatePickerSharedModule } from "src/app/mat-datepicker";
 
-import { Orcamento } from '../../orcamento.model';
-import { OrcamentoService } from '../../orcamento.service';
+import { Orcamento } from "../../orcamento.model";
+import { OrcamentoService } from "../../orcamento.service";
 
 @Component({
   selector: 'app-orcamento-cadastrar-editar',
@@ -17,18 +19,18 @@ import { OrcamentoService } from '../../orcamento.service';
 export class OrcamentoCadastrarEditarComponent implements OnInit {
   formGroup: FormGroup;
   orcamento: Orcamento;
-  cliente: Cliente;
-  httpClient: HttpClient;
+  clientes$: Observable<Cliente[]>;
 
   constructor(
     private formBuilder: FormBuilder,
     private orcamentoService: OrcamentoService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private clienteService: ClienteService
   ) {}
 
   ngOnInit(): void {
-    var dataAtual = new Date();
+    this.buscarClientes();
     this.orcamento = this.activatedRoute.snapshot.data['orcamento'];
 
     this.formGroup = this.formBuilder.group({
@@ -37,7 +39,7 @@ export class OrcamentoCadastrarEditarComponent implements OnInit {
       valor: [this.orcamento?.valor ?? null],
       descricao: [this.orcamento?.descricao ?? null],
       nome: [this.orcamento?.nome ?? null],
-      id_cliente: [this.cliente?.id ?? null],
+      cliente: [this.orcamento?.cliente ?? null],
     });
   }
 
@@ -63,7 +65,11 @@ export class OrcamentoCadastrarEditarComponent implements OnInit {
     }
   }
 
-  buscarClienteID(id:number): Observable<Cliente> {
-    return this.httpClient.get<Cliente>(`${environment.apiURL}/clientes/${id}`)
+  buscarClientes() {
+    this.clientes$ = this.clienteService.listar();
+  }
+
+  comparaCliente(o1: any, o2: any) {
+    return o1?.id == o2?.id;
   }
 }

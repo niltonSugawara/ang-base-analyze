@@ -7,6 +7,18 @@
 <div class="componente-container">
   <div *ngIf="tecnicos$ | async as tecnicos; else carregando">
     <table mat-table [dataSource]="tecnicos">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let tecnicos">{{ tecnicos.id }}</td>
+      </ng-container>
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef>Nome</th>
+        <td mat-cell *matCellDef="let tecnicos">{{ tecnicos.nome }}</td>
+      </ng-container>
+      <ng-container matColumnDef="crq">
+        <th mat-header-cell *matHeaderCellDef>CRQ</th>
+        <td mat-cell *matCellDef="let tecnicos">{{ tecnicos.crq }}</td>
+      </ng-container>
       <ng-container matColumnDef="acoes" stickyEnd>
         <th scope="col" mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let tecnico">
@@ -21,6 +33,10 @@
             <button mat-menu-item (click)="editar(tecnico)">
               <mat-icon>edit</mat-icon>
               <span>Editar</span>
+            </button>
+            <button mat-menu-item (click)="excluir(tecnico)">
+              <mat-icon>delete</mat-icon>
+              <span>Excluir</span>
             </button>
           </mat-menu>
         </td>

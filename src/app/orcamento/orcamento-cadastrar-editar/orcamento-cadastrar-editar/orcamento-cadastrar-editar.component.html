@@ -1,4 +1,4 @@
-<mat-toolbar>Cadastrar Orçamento</mat-toolbar>
+<mat-toolbar>{{orcamento?.id ? 'Editar': 'Cadastrar'}} Orçamento</mat-toolbar>
 
 <div class="componente-container">
   <form
@@ -19,35 +19,32 @@
       <mat-error>Campo é obrigatório</mat-error>
     </mat-form-field>
     <mat-form-field>
+      <mat-label>Escolha uma data</mat-label>
       <input
         matInput
-        placeholder="Data"
+        disabled
         formControlName="data"
-        required
-        autocomplete="off"
+        [matDatepicker]="picker"
       />
-      <mat-error>Campo é obrigatório</mat-error>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker disabled="false"></mat-datepicker>
     </mat-form-field>
     <mat-form-field>
       <input matInput placeholder="Valor" formControlName="valor" required />
     </mat-form-field>
     <mat-form-field>
-      <input
-        matInput
-        placeholder="Descrição"
-        formControlName="descricao"
-      />
+      <input matInput placeholder="Descrição" formControlName="descricao" />
       <mat-error>Campo é obrigatório</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input
-        matInput
-        placeholder="ID Cliente"
-        formControlName="id_cliente"
-        required
-        autocomplete="off"
-      />
-      <mat-error>Campo é obrigatório</mat-error>
+      <mat-label>Clientes</mat-label>
+      <mat-select formControlName="cliente" [compareWith]="comparaCliente">
+        <mat-option
+          *ngFor="let cliente of clientes$ | async"
+          [value]="cliente"
+          >{{ cliente.nome }}</mat-option
+        >
+      </mat-select>
     </mat-form-field>
     <div class="linha-botoes">
       <button mat-raised-button color="primary" [disabled]="!formGroup.valid">

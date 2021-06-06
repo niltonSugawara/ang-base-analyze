@@ -1,6 +1,8 @@
+import { TecnicoQuimico } from "../tecnico-quimico/tecnico-quimico.model";
+
 export interface OrdemServico {
  id: number,
  nome: string,
  data: Date,
- id_tecnico: number
+ tecnico: TecnicoQuimico
 }

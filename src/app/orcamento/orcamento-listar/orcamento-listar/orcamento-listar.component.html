@@ -17,11 +17,11 @@
       </ng-container>
       <ng-container matColumnDef="cliente">
         <th mat-header-cell *matHeaderCellDef>Cliente</th>
-        <td mat-cell *matCellDef="let clientes">{{ clientes.cnpj }}</td>
+        <td mat-cell *matCellDef="let orcamentos">{{ orcamentos.cliente?.nome }}</td>
       </ng-container>
       <ng-container matColumnDef="data">
         <th mat-header-cell *matHeaderCellDef>Data de Cadastro</th>
-        <td mat-cell *matCellDef="let orcamentos">{{ orcamentos.data }}</td>
+        <td mat-cell *matCellDef="let orcamentos">{{ formatarData(orcamentos.data) }}</td>
       </ng-container>
       <ng-container matColumnDef="valor">
         <th mat-header-cell *matHeaderCellDef>Valor</th>

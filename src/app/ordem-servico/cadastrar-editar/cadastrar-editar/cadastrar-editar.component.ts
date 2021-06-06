@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-
+import { Observable } from "rxjs";
+import { TecnicoQuimico } from "src/app/tecnico-quimico/tecnico-quimico.model";
+import { TecnicoQuimicoService } from "src/app/tecnico-quimico/tecnico-quimico.service";
 import { OrdemServico } from "../../model";
 import { OrdemServicoService } from "../../service";
 
@@ -13,23 +15,25 @@ import { OrdemServicoService } from "../../service";
 export class OrdemServicoCadastrarEditarComponent implements OnInit {
   formGroup: FormGroup;
   ordemServico: OrdemServico;
+  tecnicos$: Observable<TecnicoQuimico[]>;
 
   constructor(
     private formBuilder: FormBuilder,
     private ordemServicoService: OrdemServicoService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private tecnicoQuimicoService: TecnicoQuimicoService
   ) {}
 
   ngOnInit(): void {
-    var dataAtual = new Date();
+    this.buscarTecnicos();
     this.ordemServico = this.activatedRoute.snapshot.data['ordemServico'];
 
     this.formGroup = this.formBuilder.group({
       id: [this.ordemServico?.id ?? null],
       nome: [this.ordemServico?.nome ?? null],
       data: [this.ordemServico?.data ?? null],
-      id_tecnico: [this.ordemServico?.id_tecnico ?? null]
+      tecnico: [this.ordemServico?.tecnico ?? null],
     });
   }
 
@@ -54,4 +58,13 @@ export class OrdemServicoCadastrarEditarComponent implements OnInit {
       );
     }
   }
+
+  buscarTecnicos() {
+    this.tecnicos$ = this.tecnicoQuimicoService.listar();
+  }
+
+  comparaTecnicos(o1: any, o2: any) {
+    return o1?.id == o2?.id;
+  }
+
 }

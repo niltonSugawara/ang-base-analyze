@@ -13,7 +13,7 @@ import { TecnicoQuimicoService } from "../../tecnico-quimico.service";
 export class TecnicoQuimicoListarComponent implements OnInit {
   tecnicos$: Observable<TecnicoQuimico[]>;
 
-  colunasTabela = ['acoes'];
+  colunasTabela = ['id','nome','crq','acoes'];
 
   constructor(
     private tecnicoQuimicoService: TecnicoQuimicoService,

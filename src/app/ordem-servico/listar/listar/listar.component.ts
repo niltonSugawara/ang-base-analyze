@@ -1,9 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { Observable } from "rxjs";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { formatarDataDDMMYYYY } from 'src/app/_util/util';
 
-import { OrdemServico } from "../../model";
-import { OrdemServicoService } from "../../service";
+import { OrdemServico } from '../../model';
+import { OrdemServicoService } from '../../service';
 
 @Component({
   selector: 'app-norma-tecnica-listar-component',
@@ -13,7 +14,7 @@ import { OrdemServicoService } from "../../service";
 export class OrdemServicoListarComponent implements OnInit {
   ordens$: Observable<OrdemServico[]>;
 
-  colunasTabela = ['id','nome', 'data','id_tecnico', 'acoes'];
+  colunasTabela = ['id', 'nome', 'data', 'tecnico', 'acoes'];
 
   constructor(
     private ordemServicoService: OrdemServicoService,
@@ -41,5 +42,9 @@ export class OrdemServicoListarComponent implements OnInit {
           alert('Deletado com sucesso');
         });
     }
+  }
+
+  formatarData(data: string): string {
+    return formatarDataDDMMYYYY(data);
   }
 }
